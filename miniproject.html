@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KIET Deemed to be University</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      color: #333;
+      line-height: 1.6;
+    }
+    h1, h2, h3 {
+      color: #1a3c6e;
+    }
+    .container {
+      width: 90%;
+      max-width: 1100px;
+      margin: auto;
+    }
+    .section {
+      padding: 50px 0;
+    }
+    .grey-bg {
+      background-color: #f4f7fb;
+    }
+    .section-title {
+      text-align: center;
+      font-size: 30px;
+      margin-bottom: 30px;
+    }
+    .button {
+      display: inline-block;
+      padding: 10px 24px;
+      background-color: #f5a623;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .button:hover {
+      background-color: #d98c0f;
+    }
+    .navbar {
+      background-color: white;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .navbar .container {
+      transition: 1s;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      padding: 12px 0;
+    }
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+      color: #1a3c6e;
+      cursor: pointer;
+    }
+
+    .logo span {
+      color: #f5a623;
+    }
+
+    .menu {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .nav-link {
+      text-decoration: none;
+      color: #1a3c6e;
+      font-weight: bold;
+      padding: 5px 3px;
+      border-bottom: 3px solid white;
+      cursor: pointer;
+    }
+
+    .nav-link:hover, .nav-link.active {
+      border-bottom: 3px solid #f5a623;
+    }
+
+    .page {
+      display: none;
+    }
+
+    .page-heading {
+      background-color: #1a3c6e;
+      color: white;
+      text-align: center;
+      padding: 40px 10px;
+    }
+
+    .page-heading h1 {
+      color: white;
+      font-size: 36px;
+    }
+
+    .hero {
+      background-color: #2e6bb5;
+      color: white;
+      text-align: center;
+      padding: 90px 20px;
+    }
+
+    .hero h1 {
+      color: white;
+      font-size: 40px;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      font-size: 20px;
+      margin-bottom: 25px;
+    }
+
+    .row-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+
+    .row-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 25px;
+    }
+
+    .card {
+      background-color: white;
+      padding: 25px;
+      border-radius: 8px;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+    }
+
+    .stats-section {
+      background-color: #1a3c6e;
+      color: white;
+      padding: 40px 0;
+    }
+    .stat-box {
+      text-align: center;
+    }
+    .stat-number {
+      font-size: 38px;
+      font-weight: bold;
+      color: #f5a623;
+    }
+    .news-list {
+      list-style: none;
+      max-width: 800px;
+      margin: auto;
+    }
+    .news-list li {
+      background-color: #f4f7fb;
+      padding: 12px 18px;
+      margin-bottom: 10px;
+      border-left: 5px solid #f5a623;
+    }
+    .tab-content {
+      display: block;
+      background-color: #f4f7fb;
+      padding: 25px;
+      max-width: 800px;
+      margin:0 auto 30px auto; 
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 12px;
+      border: 1px solid #cccccc;
+      text-align: left;
+    }
+    th {
+      background-color: #1a3c6e;
+      color: white;
+    }
+    tr:nth-child(even) {
+      background-color: #f4f7fb;
+    }
+    .steps {
+      max-width: 800px;
+      margin: auto;
+      padding-left: 25px;
+    }
+    .steps li {
+      background-color: white;
+      padding: 12px;
+      margin-bottom: 10px;
+      box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+    }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+    }
+    .gallery-item {
+      height: 150px;
+      border-radius: 8px;
+      color: white;
+      font-size: 20px;
+      font-weight: bold;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+    }
+    .gallery-item:hover {
+      opacity: 0.8;
+    }
+    .lab-list {
+      text-align: center;
+    }
+    .lab-list span {
+      display: inline-block;
+      background-color: white;
+      border: 1px solid #1a3c6e;
+      color: #1a3c6e;
+      padding: 6px 15px;
+      margin: 5px;
+      border-radius: 20px;
+      font-size: 14px;
+    }
+    .contact-area {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+    }
+    .contact-info {
+      background-color: #f4f7fb;
+      padding: 25px;
+    }
+    .contact-info p {
+      margin-bottom: 12px;
+    }
+    form {
+      padding: 25px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    }
+    label {
+      display: block;
+      margin-top: 12px;
+      font-weight: bold;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 2px solid #cccccc;
+      font-size: 15px;
+      font-family: Arial, sans-serif;
+    }
+    .error-text {
+      color: red;
+      font-size: 13px;
+      min-height: 16px;
+    }
+    #success-message {
+      display: none;
+      background-color: #d4edda;
+      color: #155724;
+      padding: 12px;
+      margin-top: 15px;
+    }
+    footer {
+      background-color: #0f2444;
+      color: #cccccc;
+      padding: 40px 0 15px 0;
+    }
+    .footer-columns {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 25px;
+    }
+    footer h3 {
+      color: white;
+      margin-bottom: 10px;
+    }
+    .footer-link {
+      display: block;
+      color: #cccccc;
+      margin-bottom: 6px;
+      cursor: pointer;
+    }
+    .footer-link:hover {
+      color: #f5a623;
+    }
+    .copyright {
+      text-align: center;
+      margin-top: 25px;
+      padding-top: 12px;
+      border-top: 1px solid #445566;
+      font-size: 14px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="navbar">
+    <div class="container">
+      <div class="logo" onclick="showPage('home')"><span>KIET</span> University</div>
+      <ul class="menu">
+        <li><a class="nav-link active" id="link-home" onclick="showPage('home')">Home</a></li>
+        <li><a class="nav-link" id="link-about" onclick="showPage('about')">About</a></li>
+        <li><a class="nav-link" id="link-programs" onclick="showPage('programs')">Programs</a></li>
+        <li><a class="nav-link" id="link-admission" onclick="showPage('admission')">Admission</a></li>
+        <li><a class="nav-link" id="link-campus" onclick="showPage('campus')">Campus Life</a></li>
+        <li><a class="nav-link" id="link-contact" onclick="showPage('contact')">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+
+
+  <div class="page" id="home" style="display: block;">
+
+    <div class="hero">
+      <h1>Welcome to KIET Deemed to be University</h1>
+      <p>Empowering Minds, Enabling Skills</p>
+    </div>
+
+    <div class="section">
+      <div class="container row-3">
+        <div class="card">
+          <h3>Skill Based Education</h3>
+          <p>Where Knowledge Meets Action.</p>
+        </div>
+        <div class="card">
+          <h3>Industry Institute Collaboration</h3>
+          <p>Where Academia Meets Action.</p>
+        </div>
+        <div class="card">
+          <h3>Student Centric Approach</h3>
+          <p>Crafting personalized pathways for every learner.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="stats-section">
+      <div class="container row-4">
+        <div class="stat-box">
+          <div class="stat-number">16+</div>
+          <p>Centres of Excellence</p>
+        </div>
+        <div class="stat-box">
+          <div class="stat-number">5</div>
+          <p>Program Levels (UG to Post-Doc)</p>
+        </div>
+        <div class="stat-box">
+          <div class="stat-number">19+</div>
+          <p>Years of TBI-KIET (since 2007)</p>
+        </div>
+        <div class="stat-box">
+          <div class="stat-number">10+</div>
+          <p>Campus Events and Fests</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="container">
+        <h2 class="section-title">Academic Programs</h2>
+        <div class="row-3">
+          <div class="card">
+            <h3>Bachelor of Technology</h3>
+            <p>A four-year program in engineering and technology with specializations like CS, Mechanical, and Electrical and Electronics.</p>
+            <br>
+            <a class="button" onclick="showPage('programs')">Know More</a>
+          </div>
+          <div class="card">
+            <h3>Bachelor of Pharmacy</h3>
+            <p>A four-year program in pharmaceutical sciences, drug development, formulations, and patient care.</p>
+            <br>
+            <a class="button" onclick="showPage('programs')">Know More</a>
+          </div>
+          <div class="card">
+            <h3>Diploma in Pharmacy</h3>
+            <p>A two-year diploma covering basic pharmacy practice, drug formulations, and dispensing.</p>
+            <br>
+            <a class="button" onclick="showPage('programs')">Know More</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <div class="section">
+   <div class="container">
+    <h2 class="section-title">Announcements</h2>
+    <p style="text-align: center; font-size: 20px;">Coming Soon</p>
+   </div>
+  </div>
+  </div>
+
+
+  <div class="page" id="about">
+
+    <div class="page-heading">
+      <h1>About KIET</h1>
+      <p>Empowering Minds, Enabling Skills</p>
+    </div>
+
+    <div class="section">
+      <div class="container">
+        <div class="tab-content" id="tab-about" style="display: block;">
+          <h3>About KIET</h3>
+          <p>KIET is a Deemed to be University known for academic excellence, industry-aligned education and strong national rankings. It holds NAAC A+ accreditation, has NBA-accredited programs, a QS I-GAUGE Diamond rating and DSIR-SIRO recognition. The campus has advanced Centres of Excellence, a government-recognized Technology Business Incubator and modern research facilities. KIET is ranked in NIRF and IIRF and promotes innovation, entrepreneurship and holistic student development.</p>
+        </div>
+
+        <div class="tab-content" id="tab-vision">
+          <h3>Our Vision</h3>
+          <p>To grow into a globally recognized multidisciplinary university that is committed to skill-based education, research, innovation and ethical values, and that nurtures well-rounded individuals who serve society for sustainable development.</p>
+        </div>
+
+        <div class="tab-content" id="tab-mission">
+          <h3>Our Mission</h3>
+          <p>
+            1. To give flexible, learner-centric education that builds creativity and critical thinking.<br>
+            2. To promote interdisciplinary research, innovation and entrepreneurship.<br>
+            3. To develop industry-ready graduates through experiential learning and international exposure.<br>
+            4. To nurture globally competent and socially responsible graduates.<br>
+            5. To ensure inclusive education built on integrity, ethics and environmental care.<br>
+            6. To use digital innovation and emerging technologies in teaching, research and administration.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <div class="page" id="programs">
+
+    <div class="page-heading">
+      <h1>Programs Offered</h1>
+      <p>Undergraduate, Postgraduate, Diploma, Doctoral and Post-Doctoral</p>
+    </div>
+
+    <div class="section">
+      <div class="container">
+        <h2 class="section-title">Program List</h2>
+        <table>
+          <tr>
+            <th>Program</th>
+            <th>Level</th>
+            <th>Duration</th>
+          </tr>
+          <tr>
+            <td>B.Tech - Computer Science and Engineering (CSE)</td>
+            <td>Undergraduate</td>
+            <td>4 Years</td>
+          </tr>
+          <tr>
+            <td>B.Tech - CSE (AI / AIML / Data Science / Cyber Security)</td>
+            <td>Undergraduate</td>
+            <td>4 Years</td>
+          </tr>
+          <tr>
+            <td>B.Tech - Information Technology (IT / CSIT)</td>
+            <td>Undergraduate</td>
+            <td>4 Years</td>
+          </tr>
+          <tr>
+            <td>B.Tech - Electronics and Communication (ECE / ELCE)</td>
+            <td>Undergraduate</td>
+            <td>4 Years</td>
+          </tr>
+          <tr>
+            <td>B.Tech - Electrical and Electronics (EEE)</td>
+            <td>Undergraduate</td>
+            <td>4 Years</td>
+          </tr>
+          <tr>
+            <td>B.Tech - Mechanical Engineering</td>
+            <td>Undergraduate</td>
+            <td>4 Years</td>
+          </tr>
+          <tr>
+            <td>B.Pharm (Bachelor of Pharmacy)</td>
+            <td>Undergraduate</td>
+            <td>4 Years</td>
+          </tr>
+          <tr>
+            <td>M.Tech</td>
+            <td>Postgraduate</td>
+            <td>2 Years</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="section grey-bg">
+      <div class="container">
+        <h2 class="section-title">Schools and Departments</h2>
+        <div class="row-3">
+          <div class="card">
+            <h3>Computer Science and IT</h3>
+            <p>CSE, AI, AIML, Data Science, Cyber Security, IT and MCA.</p>
+          </div>
+          <div class="card">
+            <h3>Electronics and Electrical</h3>
+            <p>ECE, ELCE, EEE and VLSI.</p>
+          </div>
+          <div class="card">
+            <h3>Mechanical and Mechatronics</h3>
+            <p>Mechanical Engineering and Advanced Mechatronic and Industrial Automation.</p>
+          </div>
+          <div class="card">
+            <h3>Pharmacy</h3>
+            <p>B.Pharm and D.Pharm programs.</p>
+          </div>
+          <div class="card">
+            <h3>Management</h3>
+            <p>MBA program for future business leaders.</p>
+          </div>
+          <div class="card">
+            <h3>Research</h3>
+            <p>Ph.D., Post-Doctoral, publications and patents.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="page" id="admission">
+
+    <div class="page-heading">
+      <h1>Admission</h1>
+      <p>Admissions open for 2027-28</p>
+    </div>
+
+    <div class="section">
+      <div class="container">
+        <h2 class="section-title">How to Apply</h2>
+        <ol class="steps">
+          <li>Visit the official admission portal and fill the online application form.</li>
+          <li>Read the admission procedure and eligibility details.</li>
+          <li>Check the KIET Entrance Examination (KEE) details.</li>
+          <li>Check the fee structure, payment procedure and scholarship schemes.</li>
+          <li>Complete the process and confirm your seat.</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="page" id="campus">
+
+    <div class="page-heading">
+      <h1>Campus Life</h1>
+      <p>Events, clubs and Centres of Excellence.</p>
+    </div>
+
+    <div class="section">
+      <div class="container">
+        <h2 class="section-title">Events and Fests</h2>
+        <div class="gallery">
+          <div class="gallery-item" style="background-color: #1a3c6e;" >Epoque</div>
+          <div class="gallery-item" style="background-color: #1a3c6e;" >Innotech</div>
+          <div class="gallery-item" style="background-color: #1a3c6e;" >Rann</div>
+          <div class="gallery-item" style="background-color: #1a3c6e;" >Frescos</div>
+          <div class="gallery-item" style="background-color: #1a3c6e;" >TEDx</div>
+          <div class="gallery-item" style="background-color: #1a3c6e;" >PharmaManthan</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section grey-bg">
+      <div class="container">
+        <h2 class="section-title">Student Life</h2>
+        <div class="row-3">
+          <div class="card">
+            <h3>Technical Clubs</h3>
+            <p>Hands-on clubs for coding, robotics and innovation.</p>
+          </div>
+          <div class="card">
+            <h3>Cultural Clubs</h3>
+            <p>Music, dance, drama and many cultural activities.</p>
+          </div>
+          <div class="card">
+            <h3>Sports</h3>
+            <p>Sports facilities and the annual sports fest.</p>
+          </div>
+          <div class="card">
+            <h3>Hostel</h3>
+            <p>On-campus accommodation for students.</p>
+          </div>
+          <div class="card">
+            <h3>Infrastructure</h3>
+            <p>Modern classrooms, labs and library.</p>
+          </div>
+          <div class="card">
+            <h3>Barrier Free Environment</h3>
+            <p>A campus designed to be accessible for everyone.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="container">
+        <h2 class="section-title">Centres of Excellence</h2>
+        <div class="lab-list">
+          <span>Advanced Woodworking</span>
+          <span>Supercomputing</span>
+          <span>ADAM</span>
+          <span>Cyber Security</span>
+          <span>Drone Technology</span>
+          <span>E-Mobility</span>
+          <span>Hero MotoCorp</span>
+          <span>Innovation Centre</span>
+          <span>Krismatic Centre</span>
+          <span>Power and Energy Systems</span>
+          <span>Robotics</span>
+          <span>SAE KIET</span>
+          <span>Space Technologies</span>
+          <span>IDEA Lab</span>
+          <span>Festo</span>
+          <span>Quantum</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="lightbox" id="lightbox">
+    <span class="close-button" onclick="closePhoto()">&times;</span>
+    <div id="photo-big"></div>
+  </div>
+
+
+  <div class="page" id="contact">
+
+    <div class="page-heading">
+      <h1>Contact Us</h1>
+      <p>We would love to hear from you</p>
+    </div>
+
+    <div class="section">
+      <div class="container contact-area">
+
+        <div class="contact-info">
+          <h3>Get in Touch</h3>
+          <br>
+          <p><b>Address:</b> KIET, Delhi-NCR, Ghaziabad-Meerut Road, Ghaziabad (201206)</p>
+          <p><b>Helpline:</b> +91-7949335337</p>
+          <p><b>Admission:</b> +91-8445557599</p>
+          <p><b>Email:</b> admissions@kiet.edu</p>
+          <p><b>Website:</b> <a href="https://www.kiet.edu" target="_blank">www.kiet.edu</a></p>
+        </div>
+
+        <form onsubmit="return checkForm()">
+          <h3>Send us a Message</h3>
+
+          <label for="name">Name</label>
+          <input type="text" id="name" placeholder="Your full name">
+          <div class="error-text" id="name-error"></div>
+
+          <label for="email">Email</label>
+          <input type="text" id="email" placeholder="you@example.com">
+          <div class="error-text" id="email-error"></div>
+
+          <label for="phone">Phone</label>
+          <input type="text" id="phone" placeholder="10 digit mobile number">
+          <div class="error-text" id="phone-error"></div>
+
+          <label for="message">Message</label>
+          <textarea id="message" rows="4" placeholder="Write your message here"></textarea>
+          <div class="error-text" id="message-error"></div>
+
+          <br>
+          <button class="button" type="submit">Submit</button>
+          <div id="success-message">Thank you! Your message has been sent.</div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+
+  <footer>
+    <div class="container footer-columns">
+      <div>
+        <h3>KIET Deemed to be University</h3>
+        <p>Empowering Minds, Enabling Skills.<br>KIET, Delhi-NCR, Ghaziabad-Meerut Road,<br>Ghaziabad (201206)</p>
+      </div>
+      <div>
+        <h3>Contact</h3>
+        <p>Helpline: +91-7949335337</p>
+        <p>Admission: +91-8445557599</p>
+        <p>Email: admissions@kiet.edu</p>
+      </div>
+    </div>
+  </footer>
+
+
+  <script>
+    function showPage(pageId) {
+      var allPages = document.getElementsByClassName("page");
+      for (var i = 0; i < allPages.length; i++) {
+        allPages[i].style.display = "none";
+      }
+
+      document.getElementById(pageId).style.display = "block";
+
+      var allLinks = document.getElementsByClassName("nav-link");
+      for (var j = 0; j < allLinks.length; j++) {
+        allLinks[j].classList.remove("active");
+      }
+      document.getElementById("link-" + pageId).classList.add("active");
+
+      window.scrollTo(0, 0);
+    }
+    function checkForm() {
+      var name = document.getElementById("name").value;
+      var email = document.getElementById("email").value;
+      var phone = document.getElementById("phone").value;
+      var message = document.getElementById("message").value;
+
+      var formOk = true;
+
+      document.getElementById("name-error").innerText = "";
+      document.getElementById("email-error").innerText = "";
+      document.getElementById("phone-error").innerText = "";
+      document.getElementById("message-error").innerText = "";
+      document.getElementById("success-message").style.display = "none";
+
+      if (name.trim() == "") {
+        document.getElementById("name-error").innerText = "Please enter your name.";
+        formOk = false;
+      }
+
+      if (email.indexOf("@") == -1 || email.indexOf(".") == -1) {
+        document.getElementById("email-error").innerText = "Please enter a valid email.";
+        formOk = false;
+      }
+
+      if (phone.length != 10 || isNaN(phone)) {
+        document.getElementById("phone-error").innerText = "Phone number must be 10 digits.";
+        formOk = false;
+      }
+
+      if (message.trim().length < 10) {
+        document.getElementById("message-error").innerText = "Message must be at least 10 characters.";
+        formOk = false;
+      }
+
+      if (formOk == true) {
+        document.getElementById("success-message").style.display = "block";
+        document.getElementById("name").value = "";
+        document.getElementById("email").value = "";
+        document.getElementById("phone").value = "";
+        document.getElementById("message").value = "";
+      }
+
+      return false;
+    }
+  </script>
+
+</body>
+</html>
